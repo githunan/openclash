@@ -1,0 +1,13 @@
+#!name=今日水印
+#!desc=屏蔽今日水印相机广告
+#!author=有缘人
+
+[Rewrite]
+# 今日水印相机
+^http:\/\/api\.sogaha\.cn\/ssp\/ad\/get\?ip reject-dict
+
+# 友邦
+^https:\/\/e-static\.aia\.com\.cn\/kyh\/resourcefolder\/ads reject-dict
+
+[MITM]
+hostname = api.sogaha.cn, e-static.aia.com.cn
