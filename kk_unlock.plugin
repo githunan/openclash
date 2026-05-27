@@ -1,16 +1,16 @@
 #!name = KK键盘无限变声
 #!desc = 解锁无限变声功能
+#!openUrl = 
 #!author = 
 #!homepage = 
 #!icon = 
 
-[Script]
-# 使用 Loon 的 body-json-replace 功能，无需额外调用 js 脚本
-# 匹配 checkCount 和 consumeCount
-kk_count_unlock = type=http-response,pattern=^https?:\/\/kk\.weshine\.im\/v1\.0\/text2voice\/(checkCount|consumeCount),requires-body=1,body-json-replace=data.totalCount=999&data.currCount=999
+[rewrite_local]
+# KK键盘无限变声 - 处理查询次数
+^https?:\/\/kk\.weshine\.im\/v1\.0\/text2voice\/(checkCount|consumeCount) url jsonjq-response-body .data.totalCount = 999 | .data.currCount = 999
 
-# 匹配 createTtsAudio
-kk_create_unlock = type=http-response,pattern=^https?:\/\/kk\.weshine\.im\/v1\.0\/text2voice\/createTtsAudio,requires-body=1,body-json-replace=data.freeCount=999
+# KK键盘无限变声 - 处理创建音频
+^https?:\/\/kk\.weshine\.im\/v1\.0\/text2voice\/createTtsAudio url jsonjq-response-body .data.freeCount = 999
 
-[MITM]
+[mitm]
 hostname = kk.weshine.im
