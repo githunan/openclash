@@ -1,0 +1,17 @@
+#!name = KK键盘无限变声
+#!desc = 解锁无限变声功能
+#!openUrl = 
+#!author = 
+#!homepage = 
+#!icon = 
+#!input = 
+
+[Script]
+# KK键盘无限变声 - 处理查询次数
+kk_voice_count = type=http-response,pattern=^https?:\/\/kk\.weshine\.im\/v1\.0\/text2voice\/(checkCount|consumeCount),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/scripts/empty.js,argument=type=jq&text={"data":{"totalCount":999,"currCount":999}}
+
+# KK键盘无限变声 - 处理创建音频
+kk_voice_create = type=http-response,pattern=^https?:\/\/kk\.weshine\.im\/v1\.0\/text2voice\/createTtsAudio,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/fmz200/wool_scripts/main/scripts/empty.js,argument=type=jq&text={"data":{"freeCount":999}}
+
+[MITM]
+hostname = kk.weshine.im
